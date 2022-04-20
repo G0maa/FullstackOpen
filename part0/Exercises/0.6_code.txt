@@ -1,0 +1,18 @@
+title Ex. 0.6: New Note
+
+note over browser
+After clicking on submit
+Browser executes particular function that 
+stops default action of Submit button,
+and sends a single request.
+end note
+
+browser->server: User input as HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+server-->browser: Status code 201
+
+note over browser
+Server doesn't ask for a re-direct.
+
+Browser exexutes JS function that modifies DOM
+adding the new note to the list.
+end note
