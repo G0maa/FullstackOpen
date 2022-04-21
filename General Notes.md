@@ -6,6 +6,6 @@
 * Rabena Yewafa2ny 😃
 ---
 ---
-* *Stopped at:* `Part 0 - Excercies: HTML Reading`.
-* *Total Time:* `~5H00M`.
+* *Stopped at:* `Part 1 - Just started`.
+* *Total Time:* `~5H50M`.
 ---
