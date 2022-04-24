@@ -1,4 +1,4 @@
-### `Part 1: (b)` - Introduction to React
+### `Part 1: (a)` - Introduction to React
 * "probably the most important topic of this course" 😮
 * "the file public/index.html doesn't contain any HTML markup that is visible to us in the browser."
 * "when using React, all content that needs to be rendered is usually defined as React components."
@@ -27,8 +27,22 @@
 * In React code, it is preferable to use the method concat, which does not add the item to the array, but creates a new array in which the content of the old array and the new item are both included.
 * objects in JavaScript can also have methods.
 * Debugging `props`? `console.log(props)`
-* 
+* We are using a versoin of React that has `Hooks`, so we won't need to defien objects with methods.
+* Contrary to other languages, in JavaScript the value of this is defined based on how the method is called.
+* When calling the method through a reference the value of this becomes the so-called global object and the end result is often not what the software developer had originally intended.
+* However, in this course we avoid these issues by using the "this-less" JavaScript.
+* The ES6 class syntax is used a lot in "old" React and also in Node.js, hence an understanding of it is beneficial even in this course.
+* Youtubed my way out of `Closures`, didn't really get well though.
+  * They're _mostly_ functions inside funcitons.
+  * JS is different because inner funcitons can access outside variables.
 ---
 ---
-* *Time Elapsed:* `~4H00M`.
-##### END.
+### `Part 1: (C)` - Component state, event handlers
+* The person's age does not have to be passed as a parameter to the function, since it can directly access all props that are passed to the component.
+* In JavaScript, however, defining functions within functions is a commonly-used technique.
+* The idea of functions inside functions, destructuring, arrow functions, are very new to me so it will need some time to get used to.
+* Making repeated calls to the render method is not the recommended way to re-render components.
+---
+---
+### END.
+* *Time Elapsed:* `~6H40M`
