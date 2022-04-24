@@ -4,6 +4,7 @@
 * I may try practicing at [Frontend Mentor](https://frontendmentor.io/).
 * Contemplating the idea of starting with the [TheOdinProject](TheOdinproject.com) before this one.
 * Rabena Yewafa2ny 😃
+* Reading is **VERY** boring.
 ---
 ---
 * *Stopped at:* `Part 1 - Just started`.

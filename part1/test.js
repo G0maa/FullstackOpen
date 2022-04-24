@@ -1,6 +1,7 @@
-const t = [1, 2, 3, 4, 5]
-const obj = {
-    func: (element) => console.log(element)
+const Hello = ({name, age}) => {
+    console.log(name + " " + age);
+
 }
 
-t.forEach(obj.func)
+
+// Hello({"mo", "12", "test?"});
