@@ -42,7 +42,13 @@
 * In JavaScript, however, defining functions within functions is a commonly-used technique.
 * The idea of functions inside functions, destructuring, arrow functions, are very new to me so it will need some time to get used to.
 * Making repeated calls to the render method is not the recommended way to re-render components.
+* About `State Hook`:
+  * The `counter` variable is assigned the initial value of state which is zero.
+  * The variable `setCounter` is assigned to a function that will be used to modify the state.
+  * Every time the setCounter modifies the state it causes the component to re-render.
+  * Q: How does `useState()` save erm... state of a component?
+  * You can debug the application by logging the values of the component's variables to the console.
 ---
 ---
 ### END.
-* *Time Elapsed:* `~6H40M`
+* *Time Elapsed:* `~7H00M`
