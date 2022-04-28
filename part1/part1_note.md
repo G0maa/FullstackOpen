@@ -62,7 +62,19 @@
 * It is forbidden in React to mutate state directly, since it can result in unexpected side effects. Changing state has to always be done by setting the state to a new object.
 * Storing all of the state in a single state object is a bad choice for this particular application...
 * There are situations where it can be beneficial to store a piece of application state in a more complex data structure.
-* 
+* Note: see how in [P1D - Handling Arrays](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps#handling-arrays) One event handler function set both states but resulted in only one re-render, I mainly thought that when *any* `set` function is called, the component is reloaded immidietly.
+* The History component renders completely different React elements depending on the state of the application. This is called conditional rendering.
+* [Old React](https://fullstackopen.com/en/part1/a_more_complex_state_debugging_react_apps#old-react), tl;dr:
+  * We are using `State hook` which was introduced in react 16.8.0.
+  * before that there were **No** way to add state to *functional* components.
+  * adding state required your componeents to be defined as classes.
+* About debugging:
+  * F12 - Console should always be opened along side your code.
+  * When your code fails to compile => don't write more code, rather find and fix the problem immediately.
+  * Old school, print-based debugging is always a good idea.
+  * by using command `debugger` anywhere in the code, or by adding breakpoints in the `sources` tab.
+  * Use `React developer tools`.
+  * 
 ---
 ---
 ### END.
