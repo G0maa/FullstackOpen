@@ -74,8 +74,25 @@
   * Old school, print-based debugging is always a good idea.
   * by using command `debugger` anywhere in the code, or by adding breakpoints in the `sources` tab.
   * Use `React developer tools`.
-  * 
+* Some rules of hooks:
+  * `useState` and `useEffect` functions should be called from inside a function body that defines a React component.
+  * Think about when does the re-render happen and what does it do.
+* About event handlers:
+  * Event handlers must always be a function or a reference to a function.
+  * The issue in 
+  ```JS
+  onClick={console.log('clicked the button')}
+  ``` 
+  * is that our event handler is defined as a function call which means that the event handler is actually assigned the returned value from the function, which in the case of `console.log` is *undefined*.
+   
+  ```JS
+  onClick={() => console.log('clicked the button')}
+  ``` 
+  * is the correct way
+  * You will often see event handlers defined in a separate place.
+* Functions returning functions can be utilized in defining generic functionality that can be customized with parameters. 
+*  
 ---
 ---
 ### END.
-* *Time Elapsed:* `~8H15M`
+* *Time Elapsed:* `~9H45M`, one hour of the first 2.5H left.
