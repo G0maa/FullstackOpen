@@ -48,7 +48,16 @@
   * Every time the setCounter modifies the state it causes the component to re-render.
   * Q: How does `useState()` save erm... state of a component?
   * You can debug the application by logging the values of the component's variables to the console.
+* Usually defining event handlers within JSX-templates is not a good idea.
+* Even handler is a function.
+* ?JS is focused on functions much more than my past experiences?
+* It's recommended to write React components that are small and reusable across the application and even across projects.
+* > ?Often, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor.?
+---
+---
+### `Part 1: (D)` - A more complex state, debugging React apps
+* 
 ---
 ---
 ### END.
-* *Time Elapsed:* `~7H00M`
+* *Time Elapsed:* `~8H15M`
