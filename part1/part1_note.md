@@ -56,6 +56,12 @@
 ---
 ---
 ### `Part 1: (D)` - A more complex state, debugging React apps
+* What if our application requires a more complex state?
+  * In most cases the easiest and best way to accomplish this is by using the useState function multiple times to create separate "pieces" of state.
+* `...obj` (object spread), `...var` (forgot the name).
+* It is forbidden in React to mutate state directly, since it can result in unexpected side effects. Changing state has to always be done by setting the state to a new object.
+* Storing all of the state in a single state object is a bad choice for this particular application...
+* There are situations where it can be beneficial to store a piece of application state in a more complex data structure.
 * 
 ---
 ---
