@@ -91,8 +91,8 @@
   * is the correct way
   * You will often see event handlers defined in a separate place.
 * Functions returning functions can be utilized in defining generic functionality that can be customized with parameters. 
-*  
+* Never define components inside of other components.
 ---
 ---
 ### END.
-* *Time Elapsed:* `~9H45M`, one hour of the first 2.5H left.
+* *Time Elapsed:* `~10H25M`
