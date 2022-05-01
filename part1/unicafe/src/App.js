@@ -24,13 +24,13 @@ const App = () => {
             <Button handleClick={() => incrementVar(good, setGood)} text={"good"} />
             <Button handleClick={() => incrementVar(neutral, setNeutral)} text={"neutral"} />
             <Button handleClick={() => incrementVar(bad, setBad)} text={"bad"} />
-            <Stats ratings={[good, neutral, bad]}/>
+            <Statistics ratings={[good, neutral, bad]}/>
         </div>
     )
 }
 
 
-const Stats = ({ratings}) => {
+const Statistics = ({ratings}) => {
     const good = ratings[0]
     const neutral = ratings[1]
     const bad = ratings[2]
