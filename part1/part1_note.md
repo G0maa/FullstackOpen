@@ -93,7 +93,8 @@
 * Functions returning functions can be utilized in defining generic functionality that can be customized with parameters. 
 * Never define components inside of other components.
 * ?we use the new style of React that still a large majority of the material found online is outdated for our purposes.?
-* 
+
+
 ---
 ---
 ### END.
