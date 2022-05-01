@@ -1,82 +1,30 @@
 import { useState } from "react"
 
-// const History = ({allClicks}) => {
-//     if(allClicks.length === 0) {
-//         return(
-//             <div>
-//                 the app is used by pressing the buttons.
-//             </div>
-//         )
-//     }
-
-//     return(
-//         <div>
-//             button press history: {allClicks.join(' ')}
-//         </div>
-//     )
-
-// }
+const Display = ({value}) => <div>{value}</div>
 
 
-// const Button = ({handleClick, text}) => (
-//     <button onClick={handleClick}>
-//         {text}
-//     </button>
-// )
-
-
-// const App = () => {
-//     const [left, setLeft] = useState(0)
-//     const [right, setRight] = useState(0)
-//     const [allClicks, setAll] = useState([])
-
-//     console.log("A re-render happened...")
-//     const handleLeftClick = () => {
-//         setAll(allClicks.concat('L'))
-//         setLeft(left + 1)
-//     }
-//     // debugger
-//     const handleRightClick = () => {
-//         setAll(allClicks.concat('R'))
-//         setRight(right + 1)
-//     }
-
-//     return (
-//         <div>
-//             {left}
-//             <Button handleClick={handleLeftClick} text='left' />
-//             <Button handleClick={handleRightClick} text='right' />
-//             {right}
-//             <History allClicks={allClicks} />
-//         </div>
-//     )
-// }
+const Button = ({handleClick, text}) => (
+    <button onClick={handleClick}>
+        {text}
+    </button>
+)
 
 
 const App = () => {
     
-    // Verbose version:
-    // const hello = (who) => {
-    //     const handler = () => {
-    //       console.log('hello', who)
-    //     }
-      
-    //     return handler
-    //   }
+    const [value, setValue] = useState(0)
 
-    // Shorthand
-    const hello = (who) => () => {
-            console.log('Hello', who)
-        }
-    
+    const setToValue = (newValue) => {
+        setValue(newValue)
+    }
 
-    // ?Note that in the first render, three functions are created each with their respected
-    // parameter, NOT one function depending on a button click.?
+    // Passing event handlers to child components
     return (
         <div>
-            <button onClick={hello('world')}>button</button>
-            <button onClick={hello('react')}>button</button>
-            <button onClick={hello('funcion')}>button</button>
+            <Display value={value} />
+            <Button handleClick={() => setToValue(1000)} text={"thousand"} />
+            <Button handleClick={() => setValue(0)} text={"reset"} />
+            <Button handleClick={() => setToValue(value + 1)} text={"increment"} />
         </div>
     )
 }
