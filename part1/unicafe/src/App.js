@@ -31,12 +31,19 @@ const App = () => {
 
 
 const Stats = ({ratings}) => {
+    const good = ratings[0]
+    const neutral = ratings[1]
+    const bad = ratings[2]
+    const total = good + bad + neutral
     return (
         <div>
             <h1>statistics</h1>
-            <p>good {ratings[0]}</p>
-            <p>neutral {ratings[1]}</p>
-            <p>bad {ratings[2]}</p>
+            <p>good {good}</p>
+            <p>neutral {neutral}</p>
+            <p>bad {bad}</p>
+            <p>all {total}</p>
+            <p>average {(good - bad) / total}</p>
+            <p>positive {(good / total) * 100}%</p>
         </div>
     )
 }
