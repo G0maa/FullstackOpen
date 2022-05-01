@@ -31,14 +31,34 @@ const App = () => {
         setVotes(voteArrCopy)
     }
 
+    let mostVotesidx = 0
+    for(let idx = 0; idx < 7; ++idx)
+        if(voteArr[idx] > voteArr[mostVotesidx])
+            mostVotesidx = idx
+
+
     return (
         <>
-            <div>
-                {anecdotes[selected]}
-            </div>
-            <p>has {voteArr[selected]} votes</p>
+            <h1>Anecdote of the day</h1>
+            <DisplayAnecdote anecdoteText={anecdotes[selected]} anecdoteVotes={voteArr[selected]}/>
+            
             <button onClick={incrementVote}>vote</button>
             <button onClick={setRandom}>Next anecdotes</button>
+
+            <h1>Anecdote with most votes</h1>
+            <DisplayAnecdote anecdoteText={anecdotes[mostVotesidx]} anecdoteVotes={voteArr[mostVotesidx]}/>
+        </>
+    )
+}
+
+
+const DisplayAnecdote = ({anecdoteText, anecdoteVotes}) => {
+    return(
+        <>
+            <p>
+                {anecdoteText}
+            </p>
+            <p>has {anecdoteVotes} votes</p>
         </>
     )
 }
