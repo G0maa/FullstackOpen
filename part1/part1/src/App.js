@@ -1,8 +1,5 @@
 import { useState } from "react"
 
-const Display = ({value}) => <div>{value}</div>
-
-
 const Button = ({handleClick, text}) => (
     <button onClick={handleClick}>
         {text}
@@ -12,21 +9,37 @@ const Button = ({handleClick, text}) => (
 
 const App = () => {
     
-    const [value, setValue] = useState(0)
+    const [good, setGood] = useState(0)
+    const [neutral, setNeutral] = useState(0)
+    const [bad, setBad] = useState(0)
 
-    const setToValue = (newValue) => {
-        setValue(newValue)
+    const incrementVar = (vari, setVar) => {
+        setVar(vari + 1)
     }
 
-    // Passing event handlers to child components
+    
     return (
         <div>
-            <Display value={value} />
-            <Button handleClick={() => setToValue(1000)} text={"thousand"} />
-            <Button handleClick={() => setValue(0)} text={"reset"} />
-            <Button handleClick={() => setToValue(value + 1)} text={"increment"} />
+            <h1>give feedback</h1>
+            <Button handleClick={() => incrementVar(good, setGood)} text={"good"} />
+            <Button handleClick={() => incrementVar(neutral, setNeutral)} text={"neutral"} />
+            <Button handleClick={() => incrementVar(bad, setBad)} text={"bad"} />
+            <Stats ratings={[good, neutral, bad]}/>
         </div>
     )
 }
+
+
+const Stats = ({ratings}) => {
+    return (
+        <div>
+            <h1>statistics</h1>
+            <p>good {ratings[0]}</p>
+            <p>neutral {ratings[1]}</p>
+            <p>bad {ratings[2]}</p>
+        </div>
+    )
+}
+
 
 export default App
