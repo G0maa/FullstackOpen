@@ -12,6 +12,7 @@ const App = () => {
     const [good, setGood] = useState(0)
     const [neutral, setNeutral] = useState(0)
     const [bad, setBad] = useState(0)
+    // Not sure if total should have been in its own state... probably?
 
     const incrementVar = (vari, setVar) => {
         setVar(vari + 1)
@@ -36,16 +37,19 @@ const Statistics = ({ratings}) => {
     const bad = ratings[2]
     const total = good + bad + neutral
 
+    const average = (good - bad) / total
+    const positive = (good / total) * 100
+
     if(total > 0)
         return (
             <div>
                 <h1>statistics</h1>
-                <p>good {good}</p>
-                <p>neutral {neutral}</p>
-                <p>bad {bad}</p>
-                <p>all {total}</p>
-                <p>average {(good - bad) / total}</p>
-                <p>positive {(good / total) * 100}%</p>
+                <StatisticLine text={"good"} value={good} />
+                <StatisticLine text={"neutral"} value={neutral} />
+                <StatisticLine text={"bad"} value={bad} />
+                <StatisticLine text={"all"} value={total} />
+                <StatisticLine text={"average"} value={average} />
+                <StatisticLine text={"positive"} value={positive} />
             </div>
         )
     else
@@ -56,5 +60,9 @@ const Statistics = ({ratings}) => {
         )
 }
 
-
+const StatisticLine = ({text, value}) => {
+    return (
+        <p>{text} {value}</p>
+    )
+}
 export default App
