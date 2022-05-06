@@ -7,6 +7,6 @@
 * Reading is **VERY** boring.
 ---
 ---
-* *Stopped at:* `Part 1 - Just started`.
-* *Total Time:* `~5H50M`.
+* *Stopped at:* `Part 2 - Just started`.
+* *Total Time:* `~19H00M`.
 ---
