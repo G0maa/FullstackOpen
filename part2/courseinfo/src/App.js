@@ -1,7 +1,7 @@
 const Header = ({ name }) => <h1>{name}</h1>
 
 
-// const Total = ({ sum }) => <p>Number of exercises {sum}</p>
+const Total = ({ sum }) => <p>Number of exercises {sum}</p>
 
 
 const Part = ({ part }) => 
@@ -20,10 +20,15 @@ const Content = ({ parts }) => {
 
 
 const Course = ({course}) => {
+  let sum = 0
+  for(const elem of course.parts)
+    sum += elem.exercises
+
   return (
     <>
       <Header name={course.name}/>
       <Content parts={course.parts}/> 
+      <Total sum={sum}/>
     </>
   )
 }
