@@ -16,5 +16,5 @@
 ---
 ---
 ### END.
-* *Time Elapsed:* `~4H05M`
-* * *Stopped at:* `P2B - Just started`
+* *Time Elapsed:* `~5H35M`
+* * *Stopped at:* `P2B - Revise ex2.6`
