@@ -1,5 +1,10 @@
 import { useState } from 'react'
 
+import Filter from './Components/Filter'
+import PersonForm from './Components/PersonForm'
+import Persons from './Components/Persons'
+
+
 const App = () => {
   const [persons, setPersons] = useState([
     { name: 'Arto Hellas', number: '040-123456', id: 1 },
@@ -40,25 +45,19 @@ const App = () => {
     setPersons(persons.concat({name: newName, number:newNumber, id:persons.length + 1}))
   }
 
-  // Probably should refactor this code.
   return (
     <div>
       <h2>Phonebook</h2>
-      <div>Fitler shown with: <input value={searchFilter} onChange={onChangeFilter}/></div>
+
+      <Filter searchFilterVar={searchFilter} onChangeFilterFunc={onChangeFilter} />
+
       <h2>Add a new</h2>
-      <form onSubmit={addName}>
-        <div>
-          name: <input value={newName} onChange={onChangeName} />
-        </div>
-        <div>
-          number: <input value={newNumber} onChange={onChangeNumber} />
-        </div>
-        <div>
-          <button type="submit" >add</button>
-        </div>
-      </form>
+
+      <PersonForm onSubmitFunc={addName} newNameVar={newName} onChangeNameFunc={onChangeName} newNumberVar={newNumber} onChangeNumberFunc={onChangeNumber}/>
+      
       <h2>Numbers</h2>
-      {filteredPersons.map((element) => <li key={element.id}>{element.name}, {element.number}</li>)}
+      
+      <Persons filteredPersonsArr={filteredPersons} />
     </div>
   )
 }

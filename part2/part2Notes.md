@@ -12,9 +12,10 @@
 * How do we access the data contained in the form's input element?
   * There are many ways to accomplish this; the first method we will take a look at is through the use of so-called controlled components.
 * Since we assigned a piece of the App component's state as the value attribute of the input element, the App component now controls the behavior of the input element.
-* My head suddenly can't wrap around the fact of using `useState()`.
+* My head suddenly can't wrap around the fact of using `useState()`
 ---
 ---
 ### END.
+* Revise on Ex2.6 to Ex2.10 solutions after you submit them.
 * *Time Elapsed:* `~5H35M`
 * * *Stopped at:* `P2B - Revise ex2.6`
