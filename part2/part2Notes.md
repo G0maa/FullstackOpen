@@ -8,6 +8,13 @@
 * To import components according to ^ => `'./components/Note'`
 ---
 ---
+### `Part 2: (b)` - Forms
+* How do we access the data contained in the form's input element?
+  * There are many ways to accomplish this; the first method we will take a look at is through the use of so-called controlled components.
+* Since we assigned a piece of the App component's state as the value attribute of the input element, the App component now controls the behavior of the input element.
+* My head suddenly can't wrap around the fact of using `useState()`.
+---
+---
 ### END.
-* *Time Elapsed:* `~2H15M`
-* * *Stopped at:* `P2A - Excercises`
+* *Time Elapsed:* `~4H05M`
+* * *Stopped at:* `P2B - Just started`
