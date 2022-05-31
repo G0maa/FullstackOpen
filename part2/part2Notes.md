@@ -59,5 +59,5 @@ axios
 * Revise on Ex2.6 to Ex2.10 solutions after you submit them.
 * Effect hooks Vs. State hooks?
 * Why use effect hooks?
-* *Time Elapsed:* `~8H35M`
+* *Time Elapsed:* `~11H05M`
 * *Stopped at:* `P2C - Effect Hooks`
