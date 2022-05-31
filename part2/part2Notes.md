@@ -15,7 +15,44 @@
 * My head suddenly can't wrap around the fact of using `useState()`
 ---
 ---
+### `Part 2: (c)` - Getting data from server
+* This [json-server](https://github.com/typicode/json-server) looks helpful.
+* json-server mimicks the work of a backend, the file `db.json` is now on a localhost, of which you can request to CRUD.
+* `XMLHttpRequest,` otherwise known as an HTTP request made using an XHR object. This is a technique introduced in 1999, which every browser has supported for a good while now.
+* The use of XHR is no longer recommended, and browsers already widely support the fetch method, which is based on so-called promises, instead of the event-driven model used by XHR.
+* JavaScript engines, or runtime environments, follow the asynchronous model. In principle, this requires all IO-operations (with some exceptions) to be executed as non-blocking. This means that code execution continues immediately after calling an IO function, without waiting for it to return.
+  * When an asynchronous operation is completed, or, more specifically, at some point after its completion, the JavaScript engine calls the event handlers registered to the operation.
+* Synchronous Code
+  * Code execution from top to bottom.
+  * ?Wait for reply, in terms of code.?
+* Asynchronous
+  * Code execution isn't exactly from top to bottom, runtime envinronemnt calls some part of code at a later time.
+  * ?No wait for reply, im terms of code.?
+  * Event-driven (e.g. Event handler)
+  * Who ?watches? and ?deals? with requests & fires the event-handlers?
+* For the browser to remain responsive, i.e., to be able to continuously react to user operations with sufficient speed, the code logic needs to be such that no single computation can take too long.
+  * JS is single-threaded.
+* `fetch()` is a great tool. It is standardized and supported by all modern browsers.
+  * we will be using the axios library instead.
+* practically all JavaScript projects are defined using the node package manager, aka npm.
+* There is a fine difference in the parameters. axios is installed as a runtime dependency of the application, because the execution of the program requires the existence of the library. On the other hand, json-server was installed as a development dependency (--save-dev), since the program itself doesn't require it. 
+* A Promise is an object representing the eventual completion or failure of an **asynchronous operation**.
+* If, and when, we want to access the result of the operation represented by the promise, we must register an event handler to the promise. This is achieved using the method `then()`.
+* Storing the promise object in a variable is generally unnecessary, and it's instead common to chain the then method call to the axios method call, so that it follows it directly.
+* A more readable way to format chained method calls is to place each call on its own line.
+```JS
+axios
+  .get('http://localhost:3001/notes')
+  .then(response => {
+    const notes = response.data
+    console.log(notes)
+  })
+```
+* The data returned by the server (json-server) is plain text, basically just one long string, which is then parsed since the server specified the data format as json.
+* 
+---
+---
 ### END.
 * Revise on Ex2.6 to Ex2.10 solutions after you submit them.
-* *Time Elapsed:* `~5H35M`
-* * *Stopped at:* `P2B - Revise ex2.6`
+* *Time Elapsed:* `~7H25M`
+* * *Stopped at:* `P2C - Just started`
