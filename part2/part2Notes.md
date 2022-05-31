@@ -49,10 +49,15 @@ axios
   })
 ```
 * The data returned by the server (json-server) is plain text, basically just one long string, which is then parsed since the server specified the data format as json.
+* Think back to the sequence of events we just discussed. Which parts of the code are run? In what order? How often? Understanding the order of events is critical!
+  * By default, effects run after every completed render, but you can choose to fire it only when certain values have changed.
+* There are many possible use cases for an effect hook other than fetching data from the server. However, this use is sufficient for us, for now.
 * 
 ---
 ---
 ### END.
 * Revise on Ex2.6 to Ex2.10 solutions after you submit them.
-* *Time Elapsed:* `~7H25M`
-* * *Stopped at:* `P2C - Just started`
+* Effect hooks Vs. State hooks?
+* Why use effect hooks?
+* *Time Elapsed:* `~8H35M`
+* *Stopped at:* `P2C - Effect Hooks`
