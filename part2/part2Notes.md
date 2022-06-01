@@ -59,5 +59,5 @@ axios
 * Revise on **all** excercies solutions
 * Effect hooks Vs. State hooks?
 * Why use effect hooks?
-* *Time Elapsed:* `~11H05M`
+* *Time Elapsed:* `~13H35M`
 * *Stopped at:* `P2C - To do 2.13`

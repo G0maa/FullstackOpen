@@ -4,46 +4,26 @@ import axios from 'axios'
 const App = () => {
     const [searchQuery, setSearchQuery] = useState('')
     const [allCountriesData, setAllCountriesData] = useState([])
-    const [countriesData, setCountriesData] = useState([])
-    
 
     useEffect(() => {
         axios
         .get(`https://restcountries.com/v3.1/all`)
         .then((response) => {
+            console.log("restcountrie API request")
             setAllCountriesData(response.data)
         })
     }, [])
 
-
-    useEffect(() => {
-        console.log("Search query: ", searchQuery)
-        const newCountriesData = allCountriesData.filter((country) => {
-            const rule = country.name.common.toLowerCase()
-            return(rule.match(searchQuery.toLowerCase()) !== null)
-        })
-        setCountriesData(newCountriesData)
-    
-        // I'm not really sure about this solution either, how costly is it to add a dependency?
-    }, [searchQuery, allCountriesData])
-
-
     console.log("Rerender...")
     const onSearchChange = (event) => {
-        // There was... some mistake in older commits here, noticed before submitting tho :)
+        console.log("Search query", searchQuery)
         setSearchQuery(event.target.value)
-
-        // I am not sure if this should be placed here.
-        // It seems counter-intuitive to change `countriesData` 
-        // based on a state of `searchQuery` which isn't really reflected yet.
-        // console.log("Search query: ", event.target.value)
-        // const newCountriesData = allCountriesData.filter((country) => {
-        //     const rule = country.name.common.toLowerCase()
-        //     return(rule.match(event.target.value.toLowerCase()) !== null)
-        // })
-        // setCountriesData(newCountriesData)
     }
 
+    const countriesData = allCountriesData.filter((country) => {
+        const rule = country.name.common.toLowerCase()
+        return(rule.match(searchQuery.toLowerCase()) !== null)
+    })
 
     return (
         <>
@@ -79,10 +59,8 @@ const Countries = ({countriesData}) => {
 
 const ShowCountry = ({countryData}) => {
     const [isShow, setIsShow] = useState(0)
-
-    const countryName = countryData.name.common
-    const countryCapital = countryData.capital
-    const countryArea = countryData.area
+   
+    const [countryName, countryCapital, countryArea] = [countryData.name.common, countryData.capital, countryData.area]
 
     const countryLanguages = []
     for (let element in countryData.languages)
@@ -101,6 +79,7 @@ const ShowCountry = ({countryData}) => {
                     {countryLanguages.map((element, idx) => <li key={idx}>{element}</li>)}
                     <img src={counrtyImageURL} alt="country flag" width={250}/>
                 </div>
+                <ShowWeather latlonObj={countryData.capitalInfo.latlng} countryCapital={countryCapital}/>
                 <button onClick={() => setIsShow(!isShow)}>Hide</button>
             </>
         )
@@ -111,5 +90,37 @@ const ShowCountry = ({countryData}) => {
                 <button onClick={() => setIsShow(!isShow)}>Show</button>
             </p>
         )
+}
+
+
+const ShowWeather = ({latlonObj, countryCapital}) => {
+    const [capitalWeather, setCapitalWeather] = useState({})
+
+    const [capitalLat, capitalLong] = latlonObj
+    const apiKey = process.env.REACT_APP_API_KEY
+    
+    useEffect(() => {
+        axios
+        .get(`https://api.openweathermap.org/data/2.5/weather?lat=${capitalLat}&lon=${capitalLong}&appid=${apiKey}&units=metric`)
+        .then((response) => {
+            console.log("OpenWeather API request")
+            const newCapitalWeather = { }
+            newCapitalWeather['temp'] = response.data.main.temp
+            newCapitalWeather['wind'] = response.data.wind.speed
+            newCapitalWeather['iconURL'] = `http://openweathermap.org/img/wn/${response.data.weather["0"].icon}.png`
+            setCapitalWeather(newCapitalWeather)
+        })
+        // Because we have different return in `ShowCountry` this works,
+        // if we didn't we'd have one single request unless having antoher solution.
+    }, [ ])
+    
+    return(
+        <div>
+            <h1>Weather in {countryCapital}</h1>
+            <p>Temperature {capitalWeather.temp} Celsius</p>
+            <img src={capitalWeather.iconURL} alt="weather icon"/>
+            <p>Wind {capitalWeather.wind} m/s</p>
+        </div>
+    )
 }
 export default App
