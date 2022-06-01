@@ -2,36 +2,58 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 
 const App = () => {
-
-    const [country, setCountry] = useState('')
+    const [searchQuery, setSearchQuery] = useState('')
+    const [allCountriesData, setAllCountriesData] = useState([])
     const [countriesData, setCountriesData] = useState([])
+    
+
+    useEffect(() => {
+        axios
+        .get(`https://restcountries.com/v3.1/all`)
+        .then((response) => {
+            setAllCountriesData(response.data)
+        })
+    }, [])
+
+
+    useEffect(() => {
+        console.log("Search query: ", searchQuery)
+        const newCountriesData = allCountriesData.filter((country) => {
+            const rule = country.name.common.toLowerCase()
+            return(rule.match(searchQuery.toLowerCase()) !== null)
+        })
+        setCountriesData(newCountriesData)
+    
+        // I'm not really sure about this solution either, how costly is it to add a dependency?
+    }, [searchQuery, allCountriesData])
+
 
     console.log("Rerender...")
-    const onCountryChange = (event) => {
-        // I don't think this is correct.
-        // Also I believe that's too many requests, 
-        // maybe wait 250ms after each keystroke or something.
-        axios
-            .get(`https://restcountries.com/v3.1/name/${event.target.value}`)
-            .then((response) => {
-                // console.log(response.data)
-                console.log("Setting countries data")
-                setCountriesData(response.data)
-                // countriesData.forEach(element => {
-                //     console.log(element.name.common)
-                // });
-            })
-        console.log("Setting country")
-        setCountry(event.target.value)
+    const onSearchChange = (event) => {
+        // There was... some mistake in older commits here, noticed before submitting tho :)
+        setSearchQuery(event.target.value)
+
+        // I am not sure if this should be placed here.
+        // It seems counter-intuitive to change `countriesData` 
+        // based on a state of `searchQuery` which isn't really reflected yet.
+        // console.log("Search query: ", event.target.value)
+        // const newCountriesData = allCountriesData.filter((country) => {
+        //     const rule = country.name.common.toLowerCase()
+        //     return(rule.match(event.target.value.toLowerCase()) !== null)
+        // })
+        // setCountriesData(newCountriesData)
     }
+
 
     return (
         <>
-            <p>Find Counries: </p>
-            <input
-                value={country}
-                onChange={onCountryChange}
-            />
+            <p>
+                Find Counries
+                <input
+                    value={searchQuery}
+                    onChange={onSearchChange}
+                />
+            </p>
             <Countries countriesData={countriesData} />
         </>
     )
@@ -39,22 +61,13 @@ const App = () => {
 
 
 const Countries = ({countriesData}) => {
-    console.log("Inside Countries component:", countriesData)
-
-    if(countriesData.length == 1) {
-        const countryData = countriesData[0]
+    if(countriesData.length >= 1 && countriesData.length <= 10) {
         return(
             <>
-                <ShowCountry countryData={countryData} />
+            {countriesData.map((element, idx) => <ShowCountry countryData={element} key={idx} />)}
             </>
         )
     }
-    else if(countriesData.length > 1 && countriesData.length <= 10)
-        return(
-            <>
-                {countriesData.map((element, idx) => <li key={idx}>{element.name.common}</li>)}
-            </>
-        )
     else
         return(
             <>
@@ -65,28 +78,38 @@ const Countries = ({countriesData}) => {
 }
 
 const ShowCountry = ({countryData}) => {
-    console.log(countryData)
-    const countryName = countryData.name.official
+    const [isShow, setIsShow] = useState(0)
+
+    const countryName = countryData.name.common
     const countryCapital = countryData.capital
     const countryArea = countryData.area
 
     const countryLanguages = []
-    console.log(countryData.languages)
     for (let element in countryData.languages)
         countryLanguages.push(countryData.languages[element])
     
     const counrtyImageURL = countryData.flags.svg
-    console.log(counrtyImageURL)
-    
-    return(
-        <>
-            <h1>{countryName}</h1>
-            <p>Capital: {countryCapital}</p>
-            <p>Area: {countryArea}</p>
-            <p><strong>Languages: </strong></p>
-            {countryLanguages.map((element, idx) => <li key={idx}>{element}</li>)}
-            <img src={counrtyImageURL} alt="country flag" width={250}/>
-        </>
-    )
+
+    if(isShow)
+        return(
+            <>
+                <div>
+                    <h1>{countryName}</h1>
+                    <p>Capital: {countryCapital}</p>
+                    <p>Area: {countryArea}</p>
+                    <p><strong>Languages: </strong></p>
+                    {countryLanguages.map((element, idx) => <li key={idx}>{element}</li>)}
+                    <img src={counrtyImageURL} alt="country flag" width={250}/>
+                </div>
+                <button onClick={() => setIsShow(!isShow)}>Hide</button>
+            </>
+        )
+    else
+        return(
+            <p>
+                {countryName}
+                <button onClick={() => setIsShow(!isShow)}>Show</button>
+            </p>
+        )
 }
 export default App
