@@ -21,14 +21,20 @@
     {
       "content": "Tets",
       "date": "2022-06-02T07:08:18.598Z",
-      "important": false,
+      "important": true,
       "id": 4
     },
     {
       "content": "test1",
       "date": "2022-06-02T07:13:03.988Z",
-      "important": true,
+      "important": false,
       "id": 5
+    },
+    {
+      "content": "dsf",
+      "date": "2022-06-02T18:03:21.892Z",
+      "important": true,
+      "id": 6
     }
   ]
 }

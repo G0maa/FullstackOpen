@@ -1,21 +1,45 @@
 import axios from 'axios'
-
 const baseUrl = 'http://localhost:3001/notes'
 
+// So, this seems something like .then().then(), which brings a question,
+// doesn't this way call a web api, (that deals with async), which means it may _laten_ 
+// the evaluation a bit? (that is it's not dealt with on the JS stack directly anymore.)
 const getAll = () => {
-    return axios.get(baseUrl)
+  const request = axios.get(baseUrl)
+  return request.then(response => {
+    return response.data
+  })
 }
 
+// Just full code here:
+// axios
+//     .get(baseUrl)
+//     .then(response => {
+//         return response.data
+//     })
+//     .then(initialNotes => {
+//         setNotes(initialNotes)
+//   })
+// // // Was:
+// axios
+//   .get(baseUrl)
+//   .then(response => {
+//       setNotes(response.data)
+//   })
+// What is the impact of this?
+
 const create = newObject => {
-    return axios.post(baseUrl, newObject)
+  const request = axios.post(baseUrl, newObject)
+  return request.then(response => response.data)
 }
 
 const update = (id, newObject) => {
-    return axios.put(`${baseUrl}/${id}`, newObject)
+  const request = axios.put(`${baseUrl}/${id}`, newObject)
+  return request.then(response => response.data)
 }
 
-export default {
-    getAll: getAll,
-    create: create,
-    update: update
+export default { 
+  getAll: getAll, 
+  create: create, 
+  update: update 
 }
