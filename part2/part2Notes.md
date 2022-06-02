@@ -15,7 +15,7 @@
 * My head suddenly can't wrap around the fact of using `useState()`
 ---
 ---
-### `Part 2: (c)` - Getting data from server
+### `Part 2: (c)` - Getting data from server0
 * This [json-server](https://github.com/typicode/json-server) looks helpful.
 * json-server mimicks the work of a backend, the file `db.json` is now on a localhost, of which you can request to CRUD.
 * `XMLHttpRequest,` otherwise known as an HTTP request made using an XHR object. This is a technique introduced in 1999, which every browser has supported for a good while now.
@@ -52,12 +52,59 @@ axios
 * Think back to the sequence of events we just discussed. Which parts of the code are run? In what order? How often? Understanding the order of events is critical!
   * By default, effects run after every completed render, but you can choose to fire it only when certain values have changed.
 * There are many possible use cases for an effect hook other than fetching data from the server. However, this use is sufficient for us, for now.
-* 
+---
+---
+### `Part 2: (d)` - Altering data in server
+* The json-server does not exactly match the description provided by the textbook definition of a REST API, but neither do most other APIs claiming to be RESTful.
+* In REST terminology, we refer to individual data objects, such as the notes in our application, as resources.
+  * According to a general convention used by json-server, we would be able to locate an individual note at the resource URL notes/3, where 3 is the id of the resource.
+* Resources are fetched from the server with HTTP GET requests.
+* Creating a new resource for storing a note is done by making an HTTP POST request to the notes URL according to the REST convention that the json-server adheres to.
+* We create a new object for the note but omit the id property, since it's better to let the server generate ids for our resources!
+* We can use the inspector to check that the headers sent in the POST request are what we expected them to be, and that their values are correct.
+  * In the Network tab of F12 (debugging).
+  * Also note that we set the new state to add `response.data` not `noteObject`.
+    * If something wrong happens => Check response.
+* Once the data returned by the server starts to have an effect on the behavior of our web applications, we are immediately faced with a whole new set of challenges.
+* Notice how every note receives its own unique event handler function, since the id of every note is unique.
+* Individual notes stored in the json-server backend can be modified in two different ways by making HTTP requests to the note's unique URL. We can either replace the entire note with an HTTP PUT request, or only change some of the note's properties with an HTTP PATCH request.
+* I am probably going to have a hard time noticing how they did the `toggleImportanceOf()` and applying the same principle in my code.
+* On shallow-copy vs Deep-copy and `object spread syntax`:
+  * [See](https://fullstackopen.com/en/part2/altering_data_in_server#changing-the-importance-of-notes)
+```JS
+const obj = {
+    x: 1,
+    y: {z: 2},
+    k: {s: 5}
+}
+
+// This is shallow-copy for everything.
+// const obj1 = obj
+
+// This is shallow-copy for inside-objects, NOT values.
+const obj1 = {...obj, y:{z: 3}}
+
+// This doesn't reflect on obj, because it's deep-copy.
+obj1.x = 2
+// This doesn't reflect on obj, because it's specified above.
+obj1.y.z = 4
+// This *reflects* on obj, because it's shallow-copy.
+obj.k.s = 10
+
+console.log("obj: ", obj)
+console.log("obj1: ",obj1)
+// obj:  { x: 1, y: { z: 2 }, k: { s: 10 } }
+// obj1: { x: 2, y: { z: 4 }, k: { s: 10 } }
+```
+* The map method creates a new array by mapping every item from the old array into an item in the new array. 
+* Notice the naming convention and organization of `services/note.js` and how it's imported and exported.
+* I don't think `response.data` would be always as done here by `json-server`.
 ---
 ---
 ### END.
+* React depends on re-rendering, and it kinda has a lot of it.
 * Revise on **all** excercies solutions
 * Effect hooks Vs. State hooks?
 * Why use effect hooks?
-* *Time Elapsed:* `~13H35M`
-* *Stopped at:* `P2C - To do 2.13`
+* *Time Elapsed:* `~15H40M`
+* *Stopped at:* `P2D - Just started`

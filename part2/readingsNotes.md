@@ -17,5 +17,19 @@ waffle(30);
 * `reduce()` is a general higher order function for transformation, it's in the array object.
 ---
 ---
+### [What the heck is the event loop anyway?](https://youtu.be/8aGhZQkoFbQ)
+* Nice talk.
+* So, do web APIs get busy? (i.e. calling the same web api many times, how does it deal with that?)
+* If your code is slow, the `rerender` won't work, which means you can't interact with the website.
+  * a way around that is using async functions, like `timeout()`... meaning you will add each slow process to an `callback queue`, therefore between each slow process, a re-render will happen.
+  * This means that you will turn what's usually `Sync` (like a loop), to `Async`.
+---
+---
+### [About web workers](https://medium.com/techtrument/multithreading-javascript-46156179cf9a)
+* Similar to python builtin multiprocessing module.
+  * another file, pass messages between them.
+  * both operate separately.
+---
+---
 ### END.
 * *Time Elapsed:* `~0H00M`
