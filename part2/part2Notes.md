@@ -99,6 +99,7 @@ console.log("obj1: ",obj1)
 * The map method creates a new array by mapping every item from the old array into an item in the new array. 
 * Notice the naming convention and organization of `services/note.js` and how it's imported and exported.
 * I don't think `response.data` would be always as done here by `json-server`.
+* The modified `getAll` function still returns a promise, as the `then` method of a promise also returns a promise.
 ---
 ---
 ### END.
@@ -107,4 +108,4 @@ console.log("obj1: ",obj1)
 * Effect hooks Vs. State hooks?
 * Why use effect hooks?
 * *Time Elapsed:* `~15H40M`
-* *Stopped at:* `P2D - Just started`
+* *Stopped at:* `P2D - Cleaner syntax for...`
