@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios'
+import phonebookServices from './Services/phonebook'
 
 import Filter from './Components/Filter'
 import PersonForm from './Components/PersonForm'
@@ -14,17 +14,10 @@ const App = () => {
   const [searchFilter, setSearchFilter] = useState('')
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/persons")
-      .then((response) => {
-        console.log("Response of XHR")
-        setPersons(response.data)
-      })
-
-    console.log("After XHR request")
+    phonebookServices
+      .getPersons()
+      .then((response) => setPersons(response.data))
   }, [])
-  console.log(`Rendered persons ${persons.length} length`)
-
 
   const onChangeName = (event) => {
     setNewName(event.target.value)
@@ -52,13 +45,9 @@ const App = () => {
 
     const newPerson = {name: newName, number:newNumber}
 
-    axios
-      .post("http://localhost:3001/persons", newPerson)
-      .then((response) => {
-        const data = response.data
-        setPersons(persons.concat(data))
-      })
-    
+    phonebookServices
+      .postPerson(newPerson)
+      .then((response) => setPersons(persons.concat(response.data)))
   }
 
   return (
