@@ -37,24 +37,43 @@ const App = () => {
   const addName = (event) => {
     event.preventDefault()
 
-    const isFound = persons.find((element) => element.name === newName)
-    if(isFound !== undefined) {
-      alert(`${newName} is already added to phonebook`)
-      return
-    }
-
     const newPerson = {name: newName, number:newNumber}
 
-    phonebookServices
+    const isFound = persons.find((element) => element.name === newName)
+    if(isFound !== undefined) {
+      if(window.confirm((`${newName} is already added to phonebook, replace the old number with a new one?`))) {
+        phonebookServices
+          .replacePerson(newPerson, isFound.id)
+          .then((response) => {
+            const newPersonData = response.data
+            setPersons(persons.map((element) => element.id !== isFound.id ? element : newPersonData))
+          })
+      }
+      
+      // return
+    }
+    else {
+      phonebookServices
       .postPerson(newPerson)
       .then((response) => setPersons(persons.concat(response.data)))
+      .catch((error) => {
+        console.log("Some error", error)
+        alert("Resource couldn't be reached.")
+      })
+    }          
+
   }
 
   const onDelete = (personId) => {
     phonebookServices
       .deletePerson(personId)
-      .then(() => {
+      .then((response) => {
+        // Caution: response.data doesn't have that paricular object data.
         setPersons(persons.filter((element) => element.id !== personId ))
+      })
+      .catch((error) => {
+        // Caution again: Even if an error happens, the respose doesn't carry it!
+        alert(`Deletion of ${persons[personId].name} failed!`, error)
       })
   }
 
