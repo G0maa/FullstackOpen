@@ -6,7 +6,7 @@ const App = () => {
     // So... I am confused, when should we really use `useState()`?
     // Why did we do all of this, weren't the native way easier?
     // => Wait for submit, take value...
-    // <= Now we change state everytime we have a keystroke.
+    // => Now we change state everytime we have a keystroke.
     // How does `useState()` really work?
     const [notes, setNotes] = useState([])
     const [newNote, setNewNote] = useState('')
@@ -56,6 +56,12 @@ const App = () => {
             .then(returnedNote => {
                 setNotes(notes.map(note => note.id !== id ? note : returnedNote))
             })
+            .catch(error => {
+                alert(
+                  `the note '${note.content}' was already deleted from server`
+                )
+                setNotes(notes.filter(n => n.id !== id))
+              })
     }
 
     return(
