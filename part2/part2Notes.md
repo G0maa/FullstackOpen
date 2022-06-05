@@ -107,5 +107,5 @@ console.log("obj1: ",obj1)
 * Revise on **all** excercies solutions
 * Effect hooks Vs. State hooks?
 * Why use effect hooks?
-* *Time Elapsed:* `~17H10M`
+* *Time Elapsed:* `~17H35M`, 2:04 left.
 * *Stopped at:* `P2D - Cleaner syntax for...`
