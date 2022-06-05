@@ -50,6 +50,14 @@ const App = () => {
       .then((response) => setPersons(persons.concat(response.data)))
   }
 
+  const onDelete = (personId) => {
+    phonebookServices
+      .deletePerson(personId)
+      .then(() => {
+        setPersons(persons.filter((element) => element.id !== personId ))
+      })
+  }
+
   return (
     <div>
       <h2>Phonebook</h2>
@@ -62,7 +70,7 @@ const App = () => {
       
       <h2>Numbers</h2>
       
-      <Persons filteredPersonsArr={filteredPersons} />
+      <Persons filteredPersonsArr={filteredPersons} onDeleteFunc={onDelete} />
     </div>
   )
 }
