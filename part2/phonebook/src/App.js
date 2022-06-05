@@ -13,9 +13,7 @@ const App = () => {
   const [newNumber, setNewNumber] = useState('')
   const [searchFilter, setSearchFilter] = useState('')
 
-  // New bit
   useEffect(() => {
-    console.log("Effect")
     axios
       .get("http://localhost:3001/persons")
       .then((response) => {
@@ -52,7 +50,15 @@ const App = () => {
       return
     }
 
-    setPersons(persons.concat({name: newName, number:newNumber, id:persons.length + 1}))
+    const newPerson = {name: newName, number:newNumber}
+
+    axios
+      .post("http://localhost:3001/persons", newPerson)
+      .then((response) => {
+        const data = response.data
+        setPersons(persons.concat(data))
+      })
+    
   }
 
   return (
