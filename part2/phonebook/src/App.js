@@ -12,7 +12,9 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [searchFilter, setSearchFilter] = useState('')
+
   const [notificationMessage, setNotificationMessage] = useState(null)
+  const [isNotificationError, setNotificationError] = useState(false)
 
   useEffect(() => {
     phonebookServices
@@ -53,6 +55,13 @@ const App = () => {
               setNotificationMessage(null)
             }, 3000)
           })
+          .catch((error) => {
+            setNotificationMessage(`Information of '${newPerson.name}' is not existent on the server.`)
+            setNotificationError(true)
+            setTimeout(() => {
+              setNotificationMessage(null)
+            }, 3000)
+          })
       }
       
       // return
@@ -64,6 +73,7 @@ const App = () => {
         setPersons(persons.concat(response.data))
         // Kinda violates DRY?
         setNotificationMessage(`Number for '${response.data.name}' added.`)
+        setNotificationError(false)
         setTimeout(() => {
           setNotificationMessage(null)
         }, 3000)
@@ -86,6 +96,7 @@ const App = () => {
         setPersons(persons.filter((element) => element.id !== personId ))
 
         setNotificationMessage(`Record for '${deletedPerson.name}' deleted.`)
+        setNotificationError(false)
         setTimeout(() => {
           setNotificationMessage(null)
         }, 3000)
@@ -99,7 +110,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-      <Notification message={notificationMessage}/>
+      <Notification message={notificationMessage} error={isNotificationError}/>
       <Filter searchFilterVar={searchFilter} onChangeFilterFunc={onChangeFilter} />
 
       <h2>Add a new</h2>
