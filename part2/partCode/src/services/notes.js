@@ -11,23 +11,6 @@ const getAll = () => {
   })
 }
 
-// Just full code here:
-// axios
-//     .get(baseUrl)
-//     .then(response => {
-//         return response.data
-//     })
-//     .then(initialNotes => {
-//         setNotes(initialNotes)
-//   })
-// // // Was:
-// axios
-//   .get(baseUrl)
-//   .then(response => {
-//       setNotes(response.data)
-//   })
-// What is the impact of this?
-
 const create = newObject => {
   const request = axios.post(baseUrl, newObject)
   return request.then(response => response.data)
