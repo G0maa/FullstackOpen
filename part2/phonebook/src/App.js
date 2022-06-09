@@ -4,7 +4,7 @@ import phonebookServices from './Services/phonebook'
 import Filter from './Components/Filter'
 import PersonForm from './Components/PersonForm'
 import Persons from './Components/Persons'
-
+import Notification from './Components/Notification'
 
 const App = () => {
   const [persons, setPersons] = useState([])
@@ -12,6 +12,7 @@ const App = () => {
   const [newName, setNewName] = useState('')
   const [newNumber, setNewNumber] = useState('')
   const [searchFilter, setSearchFilter] = useState('')
+  const [notificationMessage, setNotificationMessage] = useState(null)
 
   useEffect(() => {
     phonebookServices
@@ -31,7 +32,7 @@ const App = () => {
     setSearchFilter(event.target.value)
   }
 
-  // small addition.
+
   const filteredPersons = (searchFilter === '') ? persons : persons.filter((element) => element.name.toLowerCase().match(searchFilter.toLowerCase()))
 
   const addName = (event) => {
@@ -47,6 +48,10 @@ const App = () => {
           .then((response) => {
             const newPersonData = response.data
             setPersons(persons.map((element) => element.id !== isFound.id ? element : newPersonData))
+            setNotificationMessage(`Number for '${newPersonData.name}' changed successfully.`)
+            setTimeout(() => {
+              setNotificationMessage(null)
+            }, 3000)
           })
       }
       
@@ -55,7 +60,14 @@ const App = () => {
     else {
       phonebookServices
       .postPerson(newPerson)
-      .then((response) => setPersons(persons.concat(response.data)))
+      .then((response) => {
+        setPersons(persons.concat(response.data))
+        // Kinda violates DRY?
+        setNotificationMessage(`Number for '${response.data.name}' added.`)
+        setTimeout(() => {
+          setNotificationMessage(null)
+        }, 3000)
+      })
       .catch((error) => {
         console.log("Some error", error)
         alert("Resource couldn't be reached.")
@@ -65,11 +77,18 @@ const App = () => {
   }
 
   const onDelete = (personId) => {
+    
     phonebookServices
       .deletePerson(personId)
       .then((response) => {
         // Caution: response.data doesn't have that paricular object data.
+        const deletedPerson = persons.find((element) => element.id === personId)
         setPersons(persons.filter((element) => element.id !== personId ))
+
+        setNotificationMessage(`Record for '${deletedPerson.name}' deleted.`)
+        setTimeout(() => {
+          setNotificationMessage(null)
+        }, 3000)
       })
       .catch((error) => {
         // Caution again: Even if an error happens, the respose doesn't carry it!
@@ -80,7 +99,7 @@ const App = () => {
   return (
     <div>
       <h2>Phonebook</h2>
-
+      <Notification message={notificationMessage}/>
       <Filter searchFilterVar={searchFilter} onChangeFilterFunc={onChangeFilter} />
 
       <h2>Add a new</h2>
