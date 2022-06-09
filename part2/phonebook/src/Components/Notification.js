@@ -1,11 +1,13 @@
 import React from "react" 
 
-const Notification = ({ message }) => {
+const Notification = ({ message, error }) => {
     if (message === null)
         return null
 
+    // Probably not the best way to implement an error notification,
+    // but I was lazy.
     const notificationStyle = {
-        color: 'green',
+        color: (error === true) ? 'red' : 'green',
         background: 'lightgrey',
         fontSize: 20,
         borderStyle: 'solid',
