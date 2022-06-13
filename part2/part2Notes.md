@@ -115,5 +115,6 @@ console.log("obj1: ",obj1)
 * Revise on **all** excercies solutions
 * Effect hooks Vs. State hooks?
 * Why use effect hooks?
-* *Time Elapsed:* `~18H35M`
-* *Stopped at:* `P2E - Just started`
+* *Time Elapsed:* `~20H20M`
+* Review solutions when possible.
+* *Stopped at:* `P3A - Just started`
