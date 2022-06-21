@@ -70,8 +70,7 @@ const App = () => {
             showNotification(`Number for '${newPersonData.name}' changed successfully.`)
           })
           .catch((error) => {
-            console.log(error)
-            showError(`Information of '${newPerson.name}' is not existent on the server.`)
+            showError(error.response.data)
           })
       }
       
