@@ -1,0 +1,23 @@
+GET https://intense-bayou-38819.herokuapp.com/api/persons
+###
+GET https://intense-bayou-38819.herokuapp.com/api/persons/3
+###
+POST https://intense-bayou-38819.herokuapp.com/api/persons
+Content-Type: application/json
+
+{
+    "name": "test",
+    "number" :"123"
+}
+###
+POST https://intense-bayou-38819.herokuapp.com/api/persons
+Content-Type: application/json
+
+{
+    "name": "test",
+    "number": "2"
+}
+###
+DELETE https://intense-bayou-38819.herokuapp.com/api/persons/4
+###
+GET http://localhost:3001/api/persons/

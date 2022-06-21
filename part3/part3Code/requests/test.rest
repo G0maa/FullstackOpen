@@ -1,0 +1,19 @@
+POST http://localhost:3001/api/notes/
+Content-Type: application/json
+
+{
+    "content": "wut",
+    "important": false
+}
+###
+PUT http://localhost:3001/api/notes/62ac2f7a6824879cba5873c7
+Content-Type: application/json
+
+{
+    "content": "This note has travelled time!",
+    "important": false
+}
+###
+GET http://localhost:3001/api/notes/
+###
+GET http://localhost:3001/api/notes/123

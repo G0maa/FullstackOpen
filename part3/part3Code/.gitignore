@@ -1,0 +1,4 @@
+node_modules
+dbPassword.txt
+.env
+git_ignored
