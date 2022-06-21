@@ -1,0 +1,6 @@
+node_modules
+password.txt
+mongo.js
+test.js
+.env
+git_ignored

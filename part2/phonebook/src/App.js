@@ -70,7 +70,7 @@ const App = () => {
             showNotification(`Number for '${newPersonData.name}' changed successfully.`)
           })
           .catch((error) => {
-            showError(error.response.data)
+            showError(error.response.data.error)
           })
       }
       
