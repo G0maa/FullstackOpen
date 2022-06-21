@@ -1,5 +1,6 @@
 import axios from 'axios'
-const baseUrl = 'http://localhost:3001/notes'
+// const baseUrl = 'https://thawing-atoll-24348.herokuapp.com/api/notes'
+const baseUrl = '/api/notes'
 
 // So, this seems something like .then().then(), which brings a question,
 // doesn't this way call a web api, (that deals with async), which means it may _laten_ 
