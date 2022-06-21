@@ -141,6 +141,9 @@
 * a smarter way (than if conditions) of validating is to use mongoose to validate.
 * The minLength and required validators are built-in and provided by Mongoose. The Mongoose custom validator functionality allows us to create new validators, if none of the built-in ones cover our needs.
 * If we try to store an object in the database that breaks one of the constraints, the operation will throw an exception.
+* In the JavaScript universe, the current leading tool for static analysis aka. "linting" is ESlint.
+* Generically, lint or a linter is any tool that detects and flags errors in programming languages, including stylistic errors. The term lint-like behavior is sometimes applied to the process of flagging suspicious language usage. Lint-like tools generally perform static analysis of source code.
+* Many companies define coding standards that are enforced throughout the organization through the ESlint configuration file. It is not recommended to keep reinventing the wheel over and over again, and it can be a good idea to adopt a ready-made configuration from someone else's project into yours.
 ---
 ---
 * How can I define my own erros?, for example I want to deal with delete requests to non-existent notes with raising an error that is dealt with in the error handling middleware.
