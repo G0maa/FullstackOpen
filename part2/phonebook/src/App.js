@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+
 import phonebookServices from './Services/phonebook'
 
 import Filter from './Components/Filter'
@@ -15,6 +16,22 @@ const App = () => {
 
   const [notificationMessage, setNotificationMessage] = useState(null)
   const [isNotificationError, setNotificationError] = useState(false)
+
+  const showError = (message) => {
+    setNotificationMessage(message)
+    setNotificationError(true)
+    setTimeout(() => {
+      setNotificationMessage(null)
+    }, 5000)
+  }
+
+  const showNotification = (message) => {
+    setNotificationMessage(message)
+    setNotificationError(false)
+    setTimeout(() => {
+      setNotificationMessage(null)
+    }, 5000)
+  }
 
   useEffect(() => {
     phonebookServices
@@ -50,17 +67,11 @@ const App = () => {
           .then((response) => {
             const newPersonData = response.data
             setPersons(persons.map((element) => element.id !== isFound.id ? element : newPersonData))
-            setNotificationMessage(`Number for '${newPersonData.name}' changed successfully.`)
-            setTimeout(() => {
-              setNotificationMessage(null)
-            }, 3000)
+            showNotification(`Number for '${newPersonData.name}' changed successfully.`)
           })
           .catch((error) => {
-            setNotificationMessage(`Information of '${newPerson.name}' is not existent on the server.`)
-            setNotificationError(true)
-            setTimeout(() => {
-              setNotificationMessage(null)
-            }, 3000)
+            console.log(error)
+            showError(`Information of '${newPerson.name}' is not existent on the server.`)
           })
       }
       
@@ -71,16 +82,11 @@ const App = () => {
       .postPerson(newPerson)
       .then((response) => {
         setPersons(persons.concat(response.data))
-        // Kinda violates DRY?
-        setNotificationMessage(`Number for '${response.data.name}' added.`)
-        setNotificationError(false)
-        setTimeout(() => {
-          setNotificationMessage(null)
-        }, 3000)
+        showNotification(`Number for '${response.data.name}' added.`)
       })
       .catch((error) => {
-        console.log("Some error", error)
-        alert("Resource couldn't be reached.")
+        console.log(error.response.data)
+        showError(error.response.data.error)
       })
     }          
 
@@ -95,15 +101,11 @@ const App = () => {
         const deletedPerson = persons.find((element) => element.id === personId)
         setPersons(persons.filter((element) => element.id !== personId ))
 
-        setNotificationMessage(`Record for '${deletedPerson.name}' deleted.`)
-        setNotificationError(false)
-        setTimeout(() => {
-          setNotificationMessage(null)
-        }, 3000)
+        showNotification(`Record for '${deletedPerson.name}' deleted.`)
       })
       .catch((error) => {
         // Caution again: Even if an error happens, the respose doesn't carry it!
-        alert(`Deletion of ${persons[personId].name} failed!`, error)
+        showError(`Deletion of ${persons[personId].name} failed!`)
       })
   }
 
