@@ -149,3 +149,6 @@
 * How can I define my own erros?, for example I want to deal with delete requests to non-existent notes with raising an error that is dealt with in the error handling middleware.
 ### END.
 * *Time Elapsed:* `~19H00M`
+---
+---
+* Qucick review of example solutions yeileded no particular discrepancies. :)
