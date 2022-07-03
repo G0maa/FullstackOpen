@@ -136,3 +136,8 @@ module.exports = notesRouter
 ### END.
 * *Time Elapsed:* `~25H20M` Took lots of time this time : )
 * *Stopped at:* `P4 - Done.`
+---
+---
+* I had a quick look at solutions:
+  * `list_helper.js` used `lodash` & some weird syntax I didn't pay much attention to.
+* I did not find radical discrepancies between my solution and the example :)
