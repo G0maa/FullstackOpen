@@ -1,0 +1,39 @@
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI5IjYyYmQ2ZWI5YmY4YjhhYzZjNWE4YjZiNiIsIm5hbWUiOiJKb2huIERvZSIsImlhdCI6MTUxNjIzNDAyMn0.LAtgUE15NcFBSjEWQmoVN4VrL8InvirMKf20h5hrNOg
+
+{
+    "title": "jwt",
+    "author": "website",
+    "url": "https://jwt.io/"
+}
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYyYmQ2ZTlkYmY4YjhhYzZjNWE4YjZiMyIsImlhdCI6MTY1Njc3OTA3NH0.bRR8B4goOkBKWb75sz6iS6zolyjmy0_2I_X2Ki8TJRA
+
+{
+    "title": "MongoDB Atlas",
+    "author": "website",
+    "url": "https://cloud.mongodb.com/"
+}
+###
+DELETE http://localhost:3003/api/blogs/62bd727035902b542122bdfe
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYyYmQ2ZTlkYmY4YjhhYzZjNWE4YjZiMyIsImlhdCI6MTY1NjYwNTAwM30.xtwzOX-_iKqvvxev8Y3jGF-D6Z0eLchTmaROIeGv7jU
+###
+PUT http://localhost:3003/api/blogs/62bd729035902b542122be04
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwiaWQiOiI2MmJkNmViOWJmOGI4YWM2YzVhOGI2YjYiLCJpYXQiOjE2NTY4MzU0MDJ9._HlDtvIhHF2_qoC3qWuR2KY1llqALv2eFp9yNrtxF0Y
+
+{
+    "title": "123",
+    "author": "teste put",
+    "url": "tset put"
+}
+###
+GET http://localhost:3003/api/blogs
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYyYmQ2ZTlkYmY4YjhhYzZjNWE4YjZiMyIsImlhdCI6MTY1NjYwNTAwM30.xtwzOX-_iKqvvxev8Y3jGF-D6Z0eLchTmaROIeGv7jU
+###
+GET http://localhost:3003/api/blogs
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYyYmQ2ZTlkYmY4YjhhYzZjNWE4YjZiMyIsImlhdCI6MTY1Njc3OTA3NH0.bRR8B4goOkBKWb75sz6iS6zolyjmy0_2I_X2Ki8TJRA

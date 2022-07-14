@@ -8,8 +8,9 @@
   * I didn't give much thought to `TOP` but `FSO` wasn't _that_ hard for me.
 * Rabena Yewafa2ny 😃
 * ~~Reading is **VERY** boring.~~ You get used to it.
+* For parts 4 and 5 and possibly later some I moved practices out of the repo when solving them, them moved them back to the repo again after finishing the part, they have their .git files renamed and ignored.
 ---
 ---
-* *Stopped at:* `Part 5 - Just started`.
-* *Total Time:* `~84H`.
+* *Stopped at:* `Part 6 - Just started`.
+* *Total Time:* `~106H`, revise after me I don't update this one always.
 ---
