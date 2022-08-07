@@ -1,0 +1,7 @@
+node_modules
+build
+.eslintrc.js
+
+# Until we find some module for it
+cypress
+cypress.config.js

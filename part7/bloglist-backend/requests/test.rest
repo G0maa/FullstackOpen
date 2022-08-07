@@ -1,0 +1,34 @@
+GET http://localhost:3003/api/blogs
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "author": "Gomaa Bin Noriel3"
+}
+###
+POST http://localhost:3003/api/blogs
+Content-Type: application/json
+
+{
+    "author": "Gomaa Bin Noriel6",
+    "title": "test6",
+    "url": "/test6/",
+    "likes": 6
+}
+###
+DELETE http://localhost:3003/api/blogs/62bc0b78f2b58240f1b28fd9
+###
+PUT http://localhost:3003/api/blogs/62bc0b78f2b58240f1b28fd9
+Content-Type: application/json
+
+{
+    "author": "Gomaa Bin Noriel6",
+    "title": "test6",
+    "url": "/test6/",
+    "likes": 99
+}
+###
+GET http://localhost:3003/api/users/
+###
+GET http://localhost:3003/api/users/62bd6e9dbf8b8ac6c5a8b6b3
