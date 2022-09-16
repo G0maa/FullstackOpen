@@ -22,8 +22,9 @@
 
 ---
 
-- _Stopped at:_ `Part 7 - Finished`.
-- _Total Time:_ `~157H`, revise after me I don't update this one always.
+- To revise GraphQL, not all problems are solved _well_.
+- _Stopped at:_ `Part 9 - Finished`.
+- _Total Time:_ `~211H`, revise after me I don't update this one always.
 - Since nearing the end of `Part7` I am yet again presented with an ever irking question, `"What's my next steps?"`, particulary after finishing `FSO`, **and its project**.
   - Database course?
     - [Udemy](https://www.udemy.com/course/database-engines-crash-course/)
@@ -34,3 +35,24 @@
   - Micro services? or different architectures at that.
   - Internship/Job search?
   - Open source contribution?
+
+---
+
+- What technologies did I learn so-far, during the time of FSO?
+  - (Functional) ReactJS
+    - State maganement: Redux, Hooks, ?GraphQL?
+  - MongoDB (NoSQL)
+  - NodeJS (Express)
+    - Authentication using JWT.
+  - Testing:
+    - Jest (Integration Testing (API), Unit testing for React)
+    - Cypress (E2E).
+  - Deployment using Heroku (welp that didn't age well?)
+  - GraphQL (Client and server), needs more time though.
+  - Git & Github (Unrelated to FSO).
+- What to study/revise during/after FSO?
+  - GraphQL.
+  - Websocket.
+  - How to API-testing with other stuff than Jest?
+  - ...
+  - Make projects.
