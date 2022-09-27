@@ -48,8 +48,26 @@
   - [Here.](https://snyk.io/blog/10-best-practices-to-containerize-nodejs-web-applications-with-docker/)
 - The Seven things in `Dockerfile`
   - `FROM`, `WORKDIR`, `COPY`, `RUN`, `ENV`, `USER`, `CMD`.
+- `Bind mount` is the act of binding a file on the host machine to a file in the container.
+- start the MongoDB with `docker-compose -f docker-compose.dev.yml up -d`. With `-d` it will run it in the background. You can view the output logs with `docker-compose -f docker-compose.dev.yml logs -f`. There the `-f` will ensure we follow the logs.
+- By default, **containers are not going to preserve our data**, to store the data:
+  - Declaring a location in your filesystem (called bind mount)
+  - Letting Docker decide where to store the data (volume)
+- About the `MongoDB` parts:
+  - First, there's the `mongo` image i.e. runtime of a MongoDB.
+  - Second, we have the `app`, which is kind of not really attached to `MongoDB`.
+  - The app is NOT containeraized, whilst the DB is.
+  - DB needs `root` user details, defined in the `docker-compose.dev.yml`.
+  - Also needs info about the user details that's going to try to connect it.
+    - which is in `mongo-init.js`
+  - Finally `app` needs to connect with `MongoDB` through `port` specified in `docker-compose.dev.yml`.
+  - FinallyII => volumes are used to:
+    - Share ``mongo-init.js`
+    - Share output data of the `DB`
 
 ---
 
-- _Time Elapsed:_ `~05H00M`
-- _Stopped at:_ `P12B - More meaningful image`
+- `docker-compose -f docker-compose.dev.yml down --volumes`
+- `docker-compose -f docker-compose.dev.yml up`
+- _Time Elapsed:_ `~07H00M`
+- _Stopped at:_ `P12B - Bind mount and initializing the database`

@@ -1,0 +1,18 @@
+PUT http://localhost:3000/todos/63331115ebd1ee38555da46b
+Content-Type: application/json
+
+{
+    "text": "Hopefully this works",
+    "done": "true"
+}
+###
+POST http://localhost:3000/todos/
+Content-Type: application/json
+
+{
+    "text": "Hopefully this 2"
+}
+###
+GET http://localhost:3000/todos/63331115ebd1ee38555da46b
+###
+DELETE http://localhost:3000/todos/63331591a4fa0e625ccf0988
