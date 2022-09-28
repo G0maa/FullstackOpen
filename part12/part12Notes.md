@@ -26,6 +26,7 @@
 - `it` makes sure we can interact with the container.
 - There are lots of commands that I need to write here 😬
 
+- `docker build -t fs-hello-world .`
 - `docker run -it <image-name>`
 - `docker start -i <container-name>`
 
@@ -66,6 +67,12 @@
     - Share output data of the `DB`
 - `docker exec` Run a command (or a command line) in a running container
 - `docker cp ./some_file CONTAINER:/work`
+
+### `Part 12: (C)` Basics of Orchestration
+
+- There are actually three different forms for the CMD out of which the exec form is preferred. Read the [documentation](https://docs.docker.com/engine/reference/builder/#cmd) for more info.
+- [Multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) are designed for splitting the build process into many separate stages, where it is possible to limit what parts of the image files are moved between the stages. That opens possibilities for limiting the size of the image since not all by-products of the build are necessary for the resulting image. Smaller images are faster to upload and download and they help reduce the number of vulnerabilities your software may have.
+- Note that it may not be the best idea to move all testing to be done during the building of an image, but there may be some containerization-related tests when this might be a good idea.
 
 ---
 
