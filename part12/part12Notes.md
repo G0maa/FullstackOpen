@@ -64,10 +64,19 @@
   - FinallyII => volumes are used to:
     - Share ``mongo-init.js`
     - Share output data of the `DB`
+- `docker exec` Run a command (or a command line) in a running container
+- `docker cp ./some_file CONTAINER:/work`
 
 ---
 
+- About `Redis`:
+  - A simple `key-value` database.
+  - Works in memory by default.
+  - Excellent use is as a cache.
+  - Has "auotmatically expiring" keys.
+  - Can implement `PubSub`
+- Remember that all of the changes are lost when the container is deleted. To preserve the changes, you must use commit.
 - `docker-compose -f docker-compose.dev.yml down --volumes`
 - `docker-compose -f docker-compose.dev.yml up`
-- _Time Elapsed:_ `~07H00M`
-- _Stopped at:_ `P12B - Bind mount and initializing the database`
+- _Time Elapsed:_ `~09H30M`
+- _Stopped at:_ `P12B - Redis`
