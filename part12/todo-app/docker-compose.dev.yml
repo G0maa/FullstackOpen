@@ -1,0 +1,64 @@
+# Revise paths if error happens..
+services:
+  todo-frontend:
+    image: hello-front-dev
+    build:
+      context: ./todo-frontend/
+      dockerfile: ./todo-frontend/dev.Dockerfile
+    volumes:
+      - type: bind # Changes are reflected, but hot-loading doesn't work for some reason in react itself.
+        source: ./todo-frontend/
+        target: /usr/src/app/
+    # ports:
+    #   - 3000:3000
+    container_name: todo-front-dev
+    environment: # URL of the Reverse-proxy
+      - REACT_APP_BACKEND_URL=http://localhost:8080/api/
+      - CHOKIDAR_USEPOLLING=true
+  mongo:
+    image: mongo
+    # ports:
+    #   - 3456:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+      MONGO_INITDB_DATABASE: the_database
+    volumes:
+      - ./todo-backend/mongo/mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+      - ./todo-backend/mondo_data:/data/db
+    container_name: todo-mongo
+  redis:
+    image: redis
+    # ports:
+    #   - 3457:6379
+    command: ["redis-server", "--appendonly", "yes"]
+    volumes:
+      - ./todo-backend/redis_dada:/data
+    container_name: todo-redis
+  server:
+    image: todo-backend-dev
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    volumes:
+      - type: bind
+        source: ./todo-backend/
+        target: /usr/src/app
+    # ports:
+    #   - 3000:3000
+    container_name: todo-server-dev
+    environment:
+      - REDIS_URL=redis://todo-redis:6379
+      - MONGO_URL=mongodb://the_username:the_password@todo-mongo:27017/the_database
+  nginx-rp:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    depends_on:
+      - todo-frontend
+      - mongo
+      - redis
+      - server
+    container_name: nginx-reverse-proxy
