@@ -5,7 +5,8 @@ WORKDIR /usr/src/app
 
 COPY --chown=node:node . .
 
-RUN npm ci --only=production
+# npm ci gave me Missing & Invalid in package-lock.json
+RUN npm install --only=production
 
 USER node
 

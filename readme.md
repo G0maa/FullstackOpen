@@ -30,7 +30,9 @@
     - What the difference?
   - Networks course?
   - [Security?](https://cybersecuritybase.mooc.fi/module-2.1)
-  - More DevOps?
+  - More DevOps? (Probably No.)
+    - [DevOps with Docker](https://devopswithdocker.com/)
+    - [DevOps with Kubernetes](https://devopswithkubernetes.com/)
   - Micro services? or different architectures at that.
   - Mentorship/Internship/Job search?
   - Open source contribution?
