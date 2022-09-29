@@ -1,5 +1,5 @@
-import './App.css';
-import TodoView from './Todos/TodoView'
+import "./App.css";
+import TodoView from "./Todos/TodoView";
 
 function App() {
   return (

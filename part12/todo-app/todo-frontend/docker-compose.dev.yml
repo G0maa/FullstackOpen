@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  app:
+    image: hello-front-dev
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
+    volumes:
+      - type: bind # Changes are reflected, but hot-loading doesn't work for some reason in react itself.
+        sourcre: ./
+        target: /usr/src/app
+    ports:
+      - 3000:3000
+    container_name: todo-front-dev

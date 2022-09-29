@@ -73,17 +73,43 @@
 - There are actually three different forms for the CMD out of which the exec form is preferred. Read the [documentation](https://docs.docker.com/engine/reference/builder/#cmd) for more info.
 - [Multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/) are designed for splitting the build process into many separate stages, where it is possible to limit what parts of the image files are moved between the stages. That opens possibilities for limiting the size of the image since not all by-products of the build are necessary for the resulting image. Smaller images are faster to upload and download and they help reduce the number of vulnerabilities your software may have.
 - Note that it may not be the best idea to move all testing to be done during the building of an image, but there may be some containerization-related tests when this might be a good idea.
+- Why `Development in containers`?
+  - To keep the environment similar between development and production..
+  - To avoid differences between developers and their personal environments..
+  - To help new team members hop in by having them install container runtime..
+- The docker-compose tool sets up a network between the containers and includes a DNS to easily connect two containers.
+- `Busybox` is a small executable with multiple tools you may need. It is called "The Swiss Army Knife of Embedded Linux", and we definitely can use it to our advantage.
+- The port does not need to be published for other services in the same network to be able to connect to it. The "ports" in the docker-compose file are only for external access.
+- Note that `depends_on` does not guarantee that the service in the depended container is ready for action. If a service needs to wait another service to become ready before the startup, [other solutions](https://docs.docker.com/compose/startup-order/) should be used.
+
+### Some commands:
+
+- Summary of `docker-compose` commands:
+  - Starting `docker-compose`
+    - `docker-compose -f <.yml file name> up -d`, `-d` for running it in the background.
+  - In case of runnig it in the background and need logs:
+    - `docker-compose -f docker-compose.dev.yml logs -f`, `-f` for following logs.
+  - Rebuild images of `docker-compose`
+    - `docker-compose up --build`
+  - Turn-off `docker-compose`, volumes included.
+    - `docker-compose -f docker-compose.dev.yml down --volumes`
+  - Run specific service inside a `.yml`
+    - `docker-compose run <service-name> <?bash?>`
 
 ---
 
+- There's an internal docker netowrk of docker containers, through which they can communicate with each other.
+  - By definition, localhost refers to the current computer used to access it. With containers localhost is unique for each container, leading to the container itself.
+  - The containers are each given two names: the service name and the container name.
+  - This works if they're in the same docker network only... thorugh e.g. a single `docker-compose` file.
 - About `Redis`:
   - A simple `key-value` database.
   - Works in memory by default.
   - Excellent use is as a cache.
   - Has "auotmatically expiring" keys.
   - Can implement `PubSub`
-- Remember that all of the changes are lost when the container is deleted. To preserve the changes, you must use commit.
+- Remember that all of the changes are lost when the container is deleted. To preserve the changes, you must use `commit`.
 - `docker-compose -f docker-compose.dev.yml down --volumes`
 - `docker-compose -f docker-compose.dev.yml up`
-- _Time Elapsed:_ `~09H30M`
-- _Stopped at:_ `P12B - Redis`
+- _Time Elapsed:_ `~015H30M`
+- _Stopped at:_ `P12C - Communications between containers in a more ambitious environment`

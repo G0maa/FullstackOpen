@@ -2,3 +2,5 @@ node_modules/
 .gitignore
 .dockerignore
 Dockerfile
+mondo_data/
+redis_dada/

@@ -10,12 +10,14 @@ const TodoList = ({ todos, deleteTodo, completeTodo }) => {
     completeTodo(todo);
   };
 
+  console.log(todos);
   return (
     <>
       {todos
         .map((todo) => {
           return (
             <Todo
+              key={todo._id}
               todo={todo}
               onClickComplete={onClickComplete}
               onClickDelete={onClickDelete}

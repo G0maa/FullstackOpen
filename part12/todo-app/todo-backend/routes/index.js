@@ -12,7 +12,12 @@ router.get("/", async (req, res) => {
   res.send({
     ...configs,
     visits,
+    // test: "hello",
   });
+});
+
+router.get("/ping", (reg, res) => {
+  res.send("pong");
 });
 
 module.exports = router;
