@@ -5,12 +5,13 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN npm ci
+# npm ci gave me Missing & Invalid in package-lock.json
+RUN npm install --only=production
 
 # Not tested... kidn of a hassle to re-download React again for the 99th time.
 RUN CI=true npm test
 
-ENV REACT_APP_BACKEND_URL="http://localhost:3000/"
+ENV REACT_APP_BACKEND_URL=http://localhost:8080/api/
 
 RUN npm run build
 

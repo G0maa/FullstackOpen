@@ -1,5 +1,6 @@
 - We will utilize containers to create immutable execution environments for our Node.js and React projects. Containers also make it easy to include multiple services with our projects.
 - In this part we are interested in the configuration of the environment in which the software is executed.
+- Best use case for `contaieners` are in production.
 
 ### `Part 12: (A)` Introduction to Containers
 
