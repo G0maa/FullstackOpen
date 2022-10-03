@@ -19,8 +19,8 @@
 ---
 
 - To revise GraphQL, not all problems are solved _well_.
-- _Stopped at:_ `Part 11 - Finished`, skipped part 10 for now, or doing both 10 & 11 unsure.
-- _Total Time:_ `~245H`, revise after me I don't update this one always.
+- _Stopped at:_ `Part 12 - Finished`, skipped part 10 for now, or doing both 10 & 11 unsure.
+- _Total Time:_ `~271H`, revise after me I don't update this one always.
 - Since nearing the end of `Part7` I am yet again presented with an ever irking question, `"What's my next steps?"`, particulary after finishing `FSO`, **and its project**.
   - **More backend... how?**
   - Probably need to finish [this](https://www.udemy.com/course/skills-algorithms-cpp/) algorithms course.

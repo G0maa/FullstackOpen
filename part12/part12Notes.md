@@ -27,10 +27,6 @@
 - `it` makes sure we can interact with the container.
 - There are lots of commands that I need to write here 😬
 
-- `docker build -t fs-hello-world .`
-- `docker run -it <image-name>`
-- `docker start -i <container-name>`
-
 ### `Part 12: (B)` Building and configuring environments
 
 - `Dockerfile` is a simple text file that contains all of the instructions for creating an image.
@@ -85,6 +81,16 @@
 
 ### Some commands:
 
+- `docker` related commands:
+
+  - For building image from `Dockerfile`, `-t` for giving it a name.
+    - `docker build -t <imgae-name> .`
+  - For running containers from already built images, or ones from `Docker hub`
+    - `docker run -it <image-name>`
+  - Starting existing containers
+    - `docker start -i <container-name>`
+    - P.S: Data here are not presisted, also added apps are only presisted when we commit to new image.
+
 - Summary of `docker-compose` commands:
   - Starting `docker-compose`
     - `docker-compose -f <.yml file name> up -d`, `-d` for running it in the background.
@@ -112,5 +118,5 @@
 - Remember that all of the changes are lost when the container is deleted. To preserve the changes, you must use `commit`.
 - `docker-compose -f docker-compose.dev.yml down --volumes`
 - `docker-compose -f docker-compose.dev.yml up`
-- _Time Elapsed:_ `~015H30M`
-- _Stopped at:_ `P12C - Communications between containers in a more ambitious environment`
+- _Time Elapsed:_ `~26H00M`
+- _Stopped at:_ `P12 - Done`
