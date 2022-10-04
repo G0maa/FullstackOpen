@@ -10,6 +10,7 @@ const middleware = require("./util/middleware");
 const blogsRouter = require("./controllers/blogs");
 const usersRouter = require("./controllers/users");
 const loginRouter = require("./controllers/login");
+const authorsRouter = require("./controllers/authors");
 const resetRouter = require("./controllers/reset");
 
 app.use(logger("tiny"));
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/api/blogs", blogsRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/login", loginRouter);
+app.use("/api/authors", authorsRouter);
 app.use("/api/reset", resetRouter);
 
 app.get("/api/ping", (req, res) => {

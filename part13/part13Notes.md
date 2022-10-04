@@ -51,6 +51,10 @@ User.sync({ alter: true });
 - in `Sequelize`:
   - Validators work on code level. (JavaScript)
   - Constraints work on SQL level. (Database)
+- `query-parameter` e.g. `/api/notes?important=false`, starting from the `?`.
+- `Sequelize` [converts](https://sequelize.org/docs/v6/core-concepts/model-querying-basics/#operators) infers every operator to some `Op.<operator name>` e.g.:
+  - equal: `{ [Op.eq]: 2 }`
+  - substring `{ [Op.substring] : "something" }`
 
 ---
 
