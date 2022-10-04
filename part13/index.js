@@ -1,82 +1,32 @@
-require("dotenv").config();
-const { Sequelize, Model, DataTypes } = require("sequelize");
 const express = require("express");
+require("express-async-errors");
 const app = express();
+const logger = require("morgan");
 
-const sequelize = new Sequelize(process.env.DATABASE_URL);
+const { PORT } = require("./util/config");
+const { connectToDatabase } = require("./util/db");
 
-sequelize
-  .authenticate()
-  .then(() => {
-    console.log("Connected to DB URL, ", process.env.DATABASE_URL);
-  })
-  .catch((error) => {
-    console.error("Unable to connect to the database:", error);
-  });
+const middleware = require("./util/middleware");
+const blogsRouter = require("./controllers/blogs");
 
-class Blog extends Model {}
-Blog.init(
-  {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-    },
-    author: {
-      type: DataTypes.STRING(50),
-    },
-    url: {
-      type: DataTypes.STRING(200),
-      allowNull: false,
-    },
-    title: {
-      type: DataTypes.STRING(50),
-      allowNull: false,
-    },
-    likes: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      defaultValue: 0,
-    },
-  },
-  {
-    sequelize,
-    underscored: true,
-    timestamps: false,
-    modelName: "note",
-  }
-);
-
-Blog.sync();
-
-// Routes
-app.get("/api/blogs", async (req, res) => {
-  const blogs = await Blog.findAll();
-  res.json(blogs);
-});
-
-// req.body
+app.use(logger("tiny"));
 app.use(express.json());
 
-app.post("/api/blogs", async (req, res) => {
-  try {
-    const blog = await Blog.create(req.body);
-    res.json(blog);
-  } catch (error) {
-    res.status(400).json(error);
-  }
+app.use("/api/blogs", blogsRouter);
+
+app.use(middleware.unknownEndpoint);
+app.use(middleware.errorHandler);
+
+app.get("/api/ping", (req, res) => {
+  res.send("pong");
 });
 
-app.delete("/api/blogs/:id", async (req, res) => {
-  await Blog.destroy({
-    where: {
-      id: req.params.id,
-    },
+const start = async () => {
+  await connectToDatabase();
+
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
   });
-  res.status(200).send();
-});
+};
 
-const PORT = process.env.PORT || 3001;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+start();

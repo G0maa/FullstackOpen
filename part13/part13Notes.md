@@ -22,6 +22,10 @@ For most of the use cases of this course, I personally would have chosen to use 
   - Try `note.toJSON()` or `JSON.stringify(notes)`.
   - `console.log(JSON.stringify(notes, null, 2))`
 
+### `Part 13: (B)` Join tables and queries
+
+-
+
 ---
 
 - Some Postgres/SQL commands:
@@ -29,5 +33,5 @@ For most of the use cases of this course, I personally would have chosen to use 
   - `\du`
   - `Model.findbyPk`
 - When using `Sequelize`, each table in the database is represented by a model, which is effectively it's own **JavaScript class**.
-- _Time Elapsed:_ `~02H20M`
-- _Stopped at:_ `P13A - Model`
+- _Time Elapsed:_ `~04H20M`
+- _Stopped at:_ `P13B - Join tables and queries`
