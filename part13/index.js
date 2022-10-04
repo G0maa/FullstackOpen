@@ -8,18 +8,24 @@ const { connectToDatabase } = require("./util/db");
 
 const middleware = require("./util/middleware");
 const blogsRouter = require("./controllers/blogs");
+const usersRouter = require("./controllers/users");
+const loginRouter = require("./controllers/login");
+const resetRouter = require("./controllers/reset");
 
 app.use(logger("tiny"));
 app.use(express.json());
 
 app.use("/api/blogs", blogsRouter);
-
-app.use(middleware.unknownEndpoint);
-app.use(middleware.errorHandler);
+app.use("/api/users", usersRouter);
+app.use("/api/login", loginRouter);
+app.use("/api/reset", resetRouter);
 
 app.get("/api/ping", (req, res) => {
   res.send("pong");
 });
+
+app.use(middleware.unknownEndpoint);
+app.use(middleware.errorHandler);
 
 const start = async () => {
   await connectToDatabase();

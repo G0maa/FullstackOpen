@@ -24,7 +24,33 @@ For most of the use cases of this course, I personally would have chosen to use 
 
 ### `Part 13: (B)` Join tables and queries
 
--
+- Code level relationsips:
+  - `Sequelize` does remaining stuff automatically, e.g. `user_id` field in `notes` table.
+  - How did it know that it's a `One-to-many relationship`? i.e. only way is to have procssed both lines `hasMany` and `belongsTo`.
+  - Also in `include`.. the type of `join` leans heavily on the type of relationship.
+
+```js
+User.hasMany(Note);
+Note.belongsTo(User);
+Note.sync({ alter: true });
+User.sync({ alter: true });
+```
+
+- Defining the same thing at the class level:
+
+```js
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: { model: 'users', key: 'id' },
+  }
+```
+
+- otherwise Sequelize does not know how at the code level to connect the tables to each other.
+  - There's no... reverse sync?
+- in `Sequelize`:
+  - Validators work on code level. (JavaScript)
+  - Constraints work on SQL level. (Database)
 
 ---
 
@@ -33,5 +59,5 @@ For most of the use cases of this course, I personally would have chosen to use 
   - `\du`
   - `Model.findbyPk`
 - When using `Sequelize`, each table in the database is represented by a model, which is effectively it's own **JavaScript class**.
-- _Time Elapsed:_ `~04H20M`
+- _Time Elapsed:_ `~08H20M`
 - _Stopped at:_ `P13B - Join tables and queries`

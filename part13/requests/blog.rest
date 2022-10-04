@@ -1,0 +1,33 @@
+POST http://localhost:3001/api/blogs
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3RAdGVzdC5jb20iLCJpZCI6MiwiaWF0IjoxNjY0ODk2ODMwfQ.4MN64-aBSoQP8oETAaVp3XDdfl1Ng00EluVqmyOU0P8
+Content-Type: application/json
+
+{
+  "author": "website",
+  "url": "https://jwt.io/",
+  "title": "jwt"
+}
+###
+POST http://localhost:3001/api/blogs
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluQHRlc3QuY29tIiwiaWQiOjEsImlhdCI6MTY2NDg5Njg2MX0.STY3roq2oIPxRF8XpfweXcT6WBFXSLY22BuIuIFmy1w
+Content-Type: application/json
+
+{
+  "author": "Matti Luukkainen",
+  "url": "https://fullstackopen.com/en/part12",
+  "title": "Docker goodness"
+}
+###
+PUT http://localhost:3001/api/blogs/2
+Content-Type: application/json
+
+{
+  "url": "test",
+  "title": "test",
+  "likes": 5
+}
+###
+DELETE http://localhost:3001/api/blogs/2
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3RAdGVzdC5jb20iLCJpZCI6MiwiaWF0IjoxNjY0ODk2ODMwfQ.4MN64-aBSoQP8oETAaVp3XDdfl1Ng00EluVqmyOU0P8
+###
+GET http://localhost:3001/api/blogs

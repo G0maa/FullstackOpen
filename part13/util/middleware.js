@@ -1,5 +1,27 @@
-const { response } = require("express");
-const { restart } = require("nodemon");
+const jwt = require("jsonwebtoken");
+
+const tokenExtractor = (request, response, next) => {
+  const authorization = request.get("authorization");
+  if (authorization && authorization.toLowerCase().startsWith("bearer ")) {
+    request.token = authorization.substring(7);
+  } else {
+    return response.status(401).json({ error: "token missing" });
+  }
+
+  return next();
+};
+
+// Problem: Changing some letters in Authorization header can
+// lead to .verify() failing, due to JSON.parse.
+const userExtractor = async (request, response, next) => {
+  if (request.token) {
+    request.user = jwt.verify(request.token, process.env.SECRET);
+  }
+  if (!request.user || !request.user.id) {
+    return response.status(401).json({ error: "token invalid" });
+  }
+  return next();
+};
 
 const errorHandler = (error, req, res, next) => {
   const errorJson = JSON.stringify(error, null, 2);
@@ -17,6 +39,9 @@ const errorHandler = (error, req, res, next) => {
   if (error.name === "TypeError") {
     return res.status(400).json({ error: error.message });
   }
+  if (error.name === "SequelizeUniqueConstraintError") {
+    return res.status(400).json({ error: error.message });
+  }
 
   return next(error);
 };
@@ -28,4 +53,6 @@ const unknownEndpoint = (req, res) => {
 module.exports = {
   unknownEndpoint,
   errorHandler,
+  tokenExtractor,
+  userExtractor,
 };
