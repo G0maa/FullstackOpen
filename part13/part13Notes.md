@@ -56,6 +56,22 @@ User.sync({ alter: true });
   - equal: `{ [Op.eq]: 2 }`
   - substring `{ [Op.substring] : "something" }`
 
+### `Part 13: (C)` Migrations, many-to-many relationships
+
+- In the past we used `.sync()` & `alter: true` to sync code-level to database-level, there's a "much more robust" way which is called `migrations`.
+- In practice, a migration is a single JavaScript file that describes some modification to a database.
+  - A separate migration file is created for each single or multiple changes at once.
+  - Sequelize keeps a record of which migrations have been performed, i.e. which changes caused by the migrations are synchronized to the database schema.
+  - When creating new migrations, Sequelize keeps up to date on which changes to the database schema are yet to be made.
+  - In this way, changes are made in a controlled manner, with the program code stored in version control.
+- We could run the migrations from the command line using the `Sequelize command line tool`. However, we choose to perform the migrations manually from the program code using the `Umzug` library.
+- So **Sequelize** has created a `migrations table` that allows it to keep track of the migrations that have been performed.
+- As noted in the end of Part 4, the way we implement disabling users here is problematic.
+  - Whether or not the user is disabled is only checked at login,
+  - if the user has a token at the time the user is disabled, the user may continue to use the same token,
+  - since no lifetime has been set for the token and the disabled status of the user is not checked when creating notes.
+- Validations in migrations have no effect, since they work code-level only.
+
 ---
 
 - Some Postgres/SQL commands:
@@ -63,5 +79,5 @@ User.sync({ alter: true });
   - `\du`
   - `Model.findbyPk`
 - When using `Sequelize`, each table in the database is represented by a model, which is effectively it's own **JavaScript class**.
-- _Time Elapsed:_ `~08H20M`
-- _Stopped at:_ `P13B - Join tables and queries`
+- _Time Elapsed:_ `~11H10M`
+- _Stopped at:_ `P13C - From the beginning`

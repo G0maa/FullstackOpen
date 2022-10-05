@@ -22,7 +22,7 @@ User.init(
       },
     },
     passwordHash: {
-      type: DataTypes.STRING(64),
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },

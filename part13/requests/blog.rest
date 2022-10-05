@@ -1,15 +1,16 @@
 POST http://localhost:3001/api/blogs
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3RAdGVzdC5jb20iLCJpZCI6MiwiaWF0IjoxNjY0ODk2ODMwfQ.4MN64-aBSoQP8oETAaVp3XDdfl1Ng00EluVqmyOU0P8
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3RAdGVzdC5jb20iLCJpZCI6MiwiaWF0IjoxNjY0OTc5MjEzfQ.8tD6JkSoYK_9n9a2cNiPQOLa_veezpNflm2I2g1OG1A
 Content-Type: application/json
 
 {
   "author": "website",
   "url": "https://jwt.io/",
-  "title": "jwt"
+  "title": "123",
+  "year": "1991"
 }
 ###
 POST http://localhost:3001/api/blogs
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluQHRlc3QuY29tIiwiaWQiOjEsImlhdCI6MTY2NDg5Njg2MX0.STY3roq2oIPxRF8XpfweXcT6WBFXSLY22BuIuIFmy1w
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluQHRlc3QuY29tIiwiaWQiOjEsImlhdCI6MTY2NDk3ODk4NX0.9yEZRtjBAEIbwoeTGjqVzVAYHyhUI4m43knc7nQnFHQ
 Content-Type: application/json
 
 {
