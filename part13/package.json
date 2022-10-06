@@ -1,0 +1,29 @@
+{
+  "name": "part13",
+  "version": "1.0.0",
+  "description": "FullstackOpen 2022 - Part 13 where we try PostgreSQL",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "migration:down": "node util/rollback.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Noriel",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.1",
+    "express-async-errors": "^3.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.8.0",
+    "sequelize": "^6.23.2",
+    "sequelize-cli": "^6.5.1",
+    "umzug": "^3.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
