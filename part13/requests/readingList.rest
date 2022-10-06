@@ -1,0 +1,16 @@
+POST http://localhost:3001/api/readinglists
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "blogId": 10
+}
+###
+PUT http://localhost:3001/api/readinglists/2
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluQHRlc3QuY29tIiwiaWQiOjEsImlhdCI6MTY2NDk3ODk4NX0.9yEZRtjBAEIbwoeTGjqVzVAYHyhUI4m43knc7nQnFHQ
+Content-Type: application/json
+
+{
+  "isRead": true
+}
+###

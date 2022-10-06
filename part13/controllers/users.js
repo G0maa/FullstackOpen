@@ -31,11 +31,34 @@ router.post("/", async (req, res) => {
 // Will errorHandler middleware catch if user is null?
 // Should it?
 
-router.get("/:username", async (req, res) => {
+router.get("/:id", async (req, res) => {
+  const where = {};
+
+  if (req.query.read) {
+    where.is_read = req.query.read === "true" ? true : false;
+  }
+
+  console.log("whree obj", where);
+
   const user = await User.findOne({
     where: {
-      username: req.params.username,
+      id: req.params.id,
     },
+    attributes: ["name", "username"],
+    include: [
+      {
+        model: Blog,
+        attributes: ["author", "url"],
+      },
+      {
+        model: Blog,
+        as: "users_blogs",
+        through: {
+          attributes: ["id", "isRead"],
+          where,
+        },
+      },
+    ],
   });
 
   res.json(user);

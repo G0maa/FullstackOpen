@@ -71,13 +71,21 @@ User.sync({ alter: true });
   - if the user has a token at the time the user is disabled, the user may continue to use the same token,
   - since no lifetime has been set for the token and the disabled status of the user is not checked when creating notes.
 - Validations in migrations have no effect, since they work code-level only.
+- `many-to-many relationship` is traditionally implemented in relational databases using a `connection table`.
+
+```
+The User.hasMany(Note) definition therefore attaches a notes property to the user object, which gives access to the notes made by the user. The User.belongsToMany(Team, { through: Membership })) definition similarly attaches a teams property to the user object, which can also be used in the code:
+```
+
+- `Seqleuize` objects maybe be immutable.
 
 ---
 
+- I don't know what's the SQL for joining the 3 tables together.
 - Some Postgres/SQL commands:
   - `\d <Optional Table Name>`
   - `\du`
   - `Model.findbyPk`
 - When using `Sequelize`, each table in the database is represented by a model, which is effectively it's own **JavaScript class**.
-- _Time Elapsed:_ `~11H10M`
+- _Time Elapsed:_ `~16H10M`
 - _Stopped at:_ `P13C - From the beginning`
