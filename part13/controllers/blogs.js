@@ -3,7 +3,11 @@ const router = require("express").Router();
 const { Op } = require("sequelize");
 const { Blog, User } = require("../models");
 const { sequelize } = require("../util/db");
-const { tokenExtractor, userExtractor } = require("../util/middleware");
+const {
+  tokenExtractor,
+  userExtractor,
+  isTokenValid,
+} = require("../util/middleware");
 
 router.get("/", async (req, res) => {
   let where = {};
@@ -32,11 +36,17 @@ router.get("/", async (req, res) => {
 });
 
 // make this verify token & make sure user exists & add his user_id to the blog.
-router.post("/", tokenExtractor, userExtractor, async (req, res) => {
-  const blog = await Blog.create({ ...req.body, userId: req.user.id });
-  res.json(blog);
-  // res.status(400).json(error);
-});
+router.post(
+  "/",
+  tokenExtractor,
+  userExtractor,
+  isTokenValid,
+  async (req, res) => {
+    const blog = await Blog.create({ ...req.body, userId: req.user.id });
+    res.json(blog);
+    // res.status(400).json(error);
+  }
+);
 
 const findBlogById = async (req, res, next) => {
   req.blog = await Blog.findByPk(req.params.id);
@@ -58,6 +68,7 @@ router.delete(
   "/:id",
   tokenExtractor,
   userExtractor,
+  isTokenValid,
   findBlogById,
   async (req, res) => {
     if (req.blog.userId !== req.user.id) {

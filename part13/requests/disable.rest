@@ -1,0 +1,3 @@
+POST http://localhost:3001/api/disable/1
+###
+POST http://localhost:3001/api/disable/2

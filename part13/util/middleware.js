@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const { Session } = require("../models");
 
 const tokenExtractor = (request, response, next) => {
   const authorization = request.get("authorization");
@@ -20,6 +21,22 @@ const userExtractor = async (request, response, next) => {
   if (!request.user || !request.user.id) {
     return response.status(401).json({ error: "token invalid" });
   }
+  return next();
+};
+
+const isTokenValid = async (req, res, next) => {
+  const isValid = await Session.findOne({
+    where: {
+      userId: req.user.id,
+      token: req.token,
+    },
+  });
+
+  if (!isValid) {
+    res.status(401).json({ error: "Token is outdated." });
+    return;
+  }
+
   return next();
 };
 
@@ -55,4 +72,5 @@ module.exports = {
   errorHandler,
   tokenExtractor,
   userExtractor,
+  isTokenValid,
 };

@@ -79,13 +79,25 @@ The User.hasMany(Note) definition therefore attaches a notes property to the use
 
 - `Seqleuize` objects maybe be immutable.
 
+- `eager` vs `lazy` fetch:
+  - Eager: Give everything.
+  - Lazy: Give only the mentioned things e.g. what's in the query parameters only.
+- Models can have `scopes`, which is something similar to functions for the model,
+  - e.g. show admins only
+  - get users with names that match a string
+  - i.e. functions that are used a lot, they can be chained too.
+- Sequlize models are JS classes, so you can also add functions to them.
+  - Instance methods for each instance, and static methods for a class method.
+- However, the problem is that the definition of the model may change over time, for example the name field may change or its data type may change. Migrations must be able to be performed successfully at any time from start to end, and if the migrations are relying on the model to have certain content, it may no longer be true in a month or a year's time. Therefore, despite the "copy paste", the migration code should be completely separate from the model code.
+
 ---
 
+- There are better & more secure implementations of server-side sessions, what's implemented here is for the sake of learning postgres only.
 - I don't know what's the SQL for joining the 3 tables together.
 - Some Postgres/SQL commands:
   - `\d <Optional Table Name>`
   - `\du`
   - `Model.findbyPk`
 - When using `Sequelize`, each table in the database is represented by a model, which is effectively it's own **JavaScript class**.
-- _Time Elapsed:_ `~16H10M`
-- _Stopped at:_ `P13C - From the beginning`
+- _Time Elapsed:_ `~18H30M`
+- _Stopped at:_ `P13C - Finished`
